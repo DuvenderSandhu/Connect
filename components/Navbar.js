@@ -29,6 +29,7 @@ export default function() {
       </ul>
     </div>
   </div>
+  <hr/>
 </nav>
 
 
