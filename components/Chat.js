@@ -1,7 +1,13 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
+import {  useDispatch, useSelector } from 'react-redux'
+import actionCreators from '../state'
 function Chat(){
+  const user=useSelector(state=>state.token)
+  const chatuser=useSelector(state=>state.chatuser)
+  const dispatch= useDispatch()
+  console.log(chatuser)
   const users=['Rahul Sharma',"Anita Kapoor","Sunita Suri",'Rahul Sharma',"Anita Kapoor","Sunita Suri"]
-  const user={token:"",name:"D Sandhu"}
+  
   const [fullMode,setFullMode]=useState(0)
   return (
     <>
@@ -54,13 +60,15 @@ function Chat(){
       <>
        <button
               class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
-            >
+           onClick={()=>{
+              dispatch(actionCreators.chatUser(e))
+              }} >
               <div
                 class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full"
               >
                 {e[0]}
               </div>
-              <div class="ml-2 text-sm font-semibold">{e}</div>
+              <div class="ml-2 text-sm font-semibold" >{e}</div>
             </button>
       </>
     )
@@ -75,6 +83,8 @@ function Chat(){
         }}>
   Chat in Full Mode 
 </button>
+          <div class="text-sm font-semibold mt-2">{chatuser}</div>
+        
         <div
           class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-[70vh] p-4"
         >
