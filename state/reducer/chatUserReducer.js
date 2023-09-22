@@ -1,10 +1,10 @@
-const tokenReducer=(state="ABC",action)=>{
-    if(action.type==='setchatUser'){
-        return action.payload
-    }
-    else{
-        return state
-    }
+const tokenReducer = (state = "", action) => {
+  if (action.type === 'setchatUser') {
+    return action.payload
+  }
+  else {
+    return state
+  }
 }
 
 
