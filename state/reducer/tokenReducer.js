@@ -1,4 +1,4 @@
-const tokenReducer=(state={token:"abc",name:"Hello"},action)=>{
+const tokenReducer=(state={token:"abc",name:"Rajesh "},action)=>{
     if(action.type==='setToken'){
         return action.payload
     }
