@@ -9,13 +9,13 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     try{
       await connectToMongo()
-  let account= await User.find({username:req.body.username}).select('-password')
+  let account= await User.find({username:req.body.username.toLowerCase()}).select('-password')
   if(account.length===0){
     
     res.json({status:"error",alert:"Invalid Credentials"})
   }
   else{
-      let result= await User.find({username:req.body.username})
+      let result= await User.find({username:req.body.username.toLowerCase()})
         let data= await bcrypt.compare(req.body.password,result[0].password)
     if(data){
       res.json(result)

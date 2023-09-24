@@ -6,8 +6,8 @@ import Chat from '../components/Chat'
 const Home: NextPage = () => {
   return (
     <>
-   {/* <Login/> */}
-    <Chat/>
+   <Login/>
+    {/* <Chat/> */}
 
     </>
   )

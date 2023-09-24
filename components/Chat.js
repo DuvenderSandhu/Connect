@@ -4,11 +4,18 @@ import actionCreators from '../state'
 function Chat(){
   const user=useSelector(state=>state.token)
   const chatuser=useSelector(state=>state.chatuser)
-  const dispatch= useDispatch()
-  console.log(chatuser)
-  const users=['Rahul Sharma',"Anita Kapoor","Sunita Suri",'Rahul Sharma',"Anita Kapoor","Sunita Suri"]
-  
   const [fullMode,setFullMode]=useState(0)
+  const [response,setResponse]=useState([])
+  const dispatch= useDispatch()
+  const users=['Rahul Sharma',"Anita Kapoor","Sunita Suri",'Rahul Sharma',"Anita Kapoor","Sunita Suri"]
+async function getData(){
+  let db= await fetch(`https://connect.moviesmovies.repl.co/api/signup`)  
+  let result= await db.json()
+  setResponse(result)
+}
+  useEffect(()=>{
+    getData().then()
+  },[])
   return (
     <>
   {/* <!-- component --> */}
