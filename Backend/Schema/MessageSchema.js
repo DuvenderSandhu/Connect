@@ -2,26 +2,18 @@ const mongoose=require('mongoose');
 const { Schema } = mongoose;
 
 const MessageSchema= new Schema({
-   name:{
-     required:true,
-      type:String
+   message:{
+     type:Array,
+     required:true
    },
-  mobile:{
-    unique:true,
-    type:String
+  sender:{
+  type:String,
+  required:true
   },
-  email:{
-    unique:false,
-    type:String
-  },
-  password:{
-    required:true,
-    type:String
-  },
-  address:{
-    type:String,
-    default:""
-  },
+  receiver:{
+  type:String,
+  required:true
+  }
   
 })
 mongoose.models={}

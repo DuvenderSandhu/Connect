@@ -16,3 +16,31 @@ export const chatUser = (user) => {
     })
   }
 }
+
+export const showWarning = (status) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'showWarning',
+      payload: status
+    })
+  }
+}
+
+export const showError = (status) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'showError',
+      payload: status
+    })
+  }
+}
+
+export const showSuccess = (status) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'showSuccess',
+      payload: status
+    })
+  }
+}
+

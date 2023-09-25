@@ -18,7 +18,13 @@ export default async function handler(req, res) {
       let result= await User.find({username:req.body.username.toLowerCase()})
         let data= await bcrypt.compare(req.body.password,result[0].password)
     if(data){
-      res.json(result)
+      let sendData={
+        username:result[0].username,
+        name:result[0].name,
+        friends:result[0].friends
+      }
+      let token= jwt.sign(sendData,process.env.JWT_TOKEN)
+      res.json({status:"ok",username:result[0].username,name:result[0].name,token})
     }
     else{
           res.json({status:"error",alert:"Invalid Credentials"})

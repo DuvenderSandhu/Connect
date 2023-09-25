@@ -1,7 +1,16 @@
 
 import Link from 'next/link'
+import Success from './Success'
+import Warning from './Warning'
+import Error from './Error'
+import { useDispatch, useSelector } from 'react-redux';
+import actionCreators from '../state/index'
 
 export default function() {
+  const dispatch = useDispatch();
+  let success = useSelector(state => state.success)
+  let warning = useSelector(state => state.warning)
+  let error = useSelector(state => state.error)
   return (
     <>
 
@@ -30,6 +39,9 @@ export default function() {
     </div>
   </div>
   <hr/>
+  {success!=""?<Success message={success}/>:""}
+  {warning!=""?<Warning message={warning}/>:""}
+  {error!=""?<Error message={error}/>:""}
 </nav>
 
 

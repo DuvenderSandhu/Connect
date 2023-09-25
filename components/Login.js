@@ -1,5 +1,10 @@
 import {useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import actionCreators from '../state/index'
+
 function Login (){
+  const dispatch = useDispatch();
+  let success = useSelector(state => state.success)
   const [password,setPassword]=useState("")
   const [username,setUsername]=useState("")
   const HandleClick= async function (e){
@@ -14,7 +19,14 @@ function Login (){
     });
 
     let result= await response.json()
-    console.log(result)
+    if(result.status==="ok"){
+      dispatch(actionCreators.tokenChange({username:result.username,name:result.name,token:result.token}))
+      dispatch(actionCreators.showSuccess("User Logged In"))
+      localStorage.setItem('token',result.token)
+    }
+    else{
+      dispatch(actionCreators.showError(result.alert))
+    }
   }
 
   return (

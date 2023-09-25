@@ -1,5 +1,10 @@
 import {useState} from 'react'
+import {useRouter} from 'next/router'
+import { useDispatch, useSelector } from 'react-redux';
+import actionCreators from '../state/index'
 function Signup (){
+  const dispatch = useDispatch();
+  const router= useRouter()
   const [password,setPassword]=useState("")
   const [username,setUsername]=useState("")
   const [name,setName]=useState("")
@@ -18,19 +23,16 @@ function Signup (){
 
     let result= await response.json()
     console.log(result)
+    if(result.status==="ok"){
+      dispatch(actionCreators.showSuccess("User Created Kindly Login"))
+      router.push('/')
+    }
+    else{
+      dispatch(actionCreators.showError("Kindly Enter Valid Data"))
+      
+    }
   }
-  async function getData(){
-  let data= {}
-  let db= await fetch(`https://connect.moviesmovies.repl.co/api/signup`,{
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })  
-  let result= await db.json()
-  setResponse(result)
-}
+
   
   return (
     <>

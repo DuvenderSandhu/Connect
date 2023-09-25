@@ -22,7 +22,15 @@ const UserSchema= new Schema({
     type:String,
     required:true
   },
-  
+  friends:{
+    type:Array,
+  },
+  sent:{
+    type:Array,
+  },
+  recived:{
+  type:Array,
+  }
 })
 mongoose.models={}
 module.exports = UserSchema
