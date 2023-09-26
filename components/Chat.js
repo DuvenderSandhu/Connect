@@ -1,21 +1,15 @@
-import {useState,useEffect} from 'react'
+import {useState,useEffect,useRef } from 'react'
 import {  useDispatch, useSelector } from 'react-redux'
 import actionCreators from '../state'
 function Chat(){
+  const inputRef = useRef(null);
   const user=useSelector(state=>state.token)
   const chatuser=useSelector(state=>state.chatuser)
   const [fullMode,setFullMode]=useState(0)
   const [response,setResponse]=useState([])
   const dispatch= useDispatch()
   const users=['Rahul Sharma',"Anita Kapoor","Sunita Suri",'Rahul Sharma',"Anita Kapoor","Sunita Suri"]
-async function getData(){
-  let db= await fetch(`https://connect.moviesmovies.repl.co/api/signup`)  
-  let result= await db.json()
-  setResponse(result)
-}
-  useEffect(()=>{
-    getData().then()
-  },[])
+
   return (
     <>
   {/* <!-- component --> */}
@@ -173,7 +167,7 @@ async function getData(){
             </div>
             <div class="flex-grow ml-4">
               <div class="relative w-full">
-                <input
+                <input ref={inputRef}
                   type="text"
                   class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                 />
@@ -200,7 +194,9 @@ async function getData(){
             <div class="ml-4">
               <button
                 class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
-              >
+              onClick={()=>{
+                console.log("HI")
+              }}>
                 <span>Send</span>
                 <span class="ml-2">
                   <svg

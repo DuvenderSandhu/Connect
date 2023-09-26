@@ -11,7 +11,8 @@ const Home: NextPage = () => {
   let token = useSelector(state => state.token)
   return (
     <>
-      {token.token?<Chat/>:<Login/>}
+      {/* {token.token?<Chat/>:<Login/>} */}
+      <Chat/>
 
     </>
   )

@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const MessageSchema= new Schema({
    message:{
-     type:Array,
+     type:String,
      required:true
    },
   sender:{
@@ -13,6 +13,10 @@ const MessageSchema= new Schema({
   receiver:{
   type:String,
   required:true
+  },
+  timestamp:{
+    type:Date,
+    default: new Date().getTime()
   }
   
 })
