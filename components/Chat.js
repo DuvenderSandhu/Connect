@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import actionCreators from '../state'
 import io from 'socket.io-client';
 
+const socket = io();
+
+
 function Chat() {
-  const socket = io();
   const inputRef = useRef(null);
   const user = useSelector(state => state.token)
   const chatuser = useSelector(state => state.chatuser)
@@ -12,7 +14,25 @@ function Chat() {
   const [response, setResponse] = useState([])
   const dispatch = useDispatch()
   const users = ['Rahul Sharma', "Anita Kapoor", "Sunita Suri", 'Rahul Sharma', "Anita Kapoor", "Sunita Suri"]
+useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected to the server via Socket.io');
+    });
 
+    socket.on('disconnect', () => {
+      console.log('Disconnected from the server via Socket.io');
+    });
+
+    // You can now listen for custom events or send data to the server
+    socket.on('customEvent', (data) => {
+      console.log('Received data from server:', data);
+    });
+
+    // Clean up the socket connection when the component unmounts
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
   return (
     <>
       {/* <!-- component --> */}
